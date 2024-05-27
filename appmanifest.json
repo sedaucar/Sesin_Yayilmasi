@@ -1,0 +1,11 @@
+{
+	"name": "Sesin_Yayilmasi",
+	"short_name": "Sesin_Yayilmasi",
+	"description": "",
+	"start_url": "index.html",
+	"display": "fullscreen",
+	"orientation": "landscape",
+	"background_color": "#ffffff",
+	"icons": [],
+	"screenshots": []
+}
