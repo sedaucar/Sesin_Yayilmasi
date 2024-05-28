@@ -4536,9 +4536,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Arr,
 		C3.Plugins.Text,
 		C3.Plugins.System.Cnds.OnLayoutStart,
+		C3.Plugins.System.Acts.ResetGlobals,
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Behaviors.Flash.Acts.Flash,
+		C3.Plugins.System.Cnds.IsPreview,
 		C3.Plugins.System.Cnds.Compare,
+		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.Audio.Acts.Play,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Plugins.System.Acts.SetLayerVisible,
@@ -4554,7 +4557,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Browser.Acts.RequestFullScreen,
 		C3.Plugins.Browser.Acts.CancelFullScreen,
 		C3.Plugins.Audio.Acts.SetPaused,
-		C3.Plugins.System.Acts.ResetGlobals,
+		C3.Plugins.Audio.Acts.PreloadByName,
 		C3.Plugins.System.Acts.Wait,
 		C3.Plugins.Arr.Exps.Back,
 		C3.Behaviors.Bullet.Acts.SetEnabled,
@@ -4562,13 +4565,15 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.MoveTo.Acts.MoveToPosition,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Y,
+		C3.Plugins.System.Cnds.CompareBoolVar,
+		C3.Plugins.System.Cnds.LayerVisible,
+		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.Sprite.Cnds.OnCollision,
 		C3.Plugins.System.Acts.AddVar,
-		C3.Plugins.System.Cnds.LayerVisible,
 		C3.Plugins.System.Cnds.While,
 		C3.Plugins.Arr.Cnds.CompareSize,
 		C3.Plugins.System.Acts.SetVar,
@@ -4576,12 +4581,9 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Arr.Exps.IndexOf,
 		C3.Plugins.Arr.Acts.Push,
 		C3.Plugins.Sprite.Cnds.IsVisible,
-		C3.Plugins.System.Cnds.CompareBoolVar,
-		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Arr.Acts.Pop,
 		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.Text.Acts.SetText,
-		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.System.Acts.RestartLayout
 	];
 };
@@ -4667,7 +4669,8 @@ self.C3_JsPropNameTable = [
 	{morcarp: 0},
 	{saricarp: 0},
 	{pembecarp: 0},
-	{tiklama: 0}
+	{tiklama: 0},
+	{patlama: 0}
 ];
 
 self.InstanceType = {
@@ -4850,6 +4853,7 @@ self.C3_ExpressionFuncs = [
 		() => "ses",
 		() => "close",
 		() => "open",
+		() => "oyun_arka_fon",
 		() => "soru",
 		() => 0.01,
 		p => {
