@@ -4348,17 +4348,6 @@ index);return ret?ret.x:0},TagY(tag,index){const ret=this._GetTagPosition(tag,in
 }
 
 {
-'use strict';{const C3=self.C3;C3.Behaviors.Flash=class FlashBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}}}{const C3=self.C3;C3.Behaviors.Flash.Type=class FlashType extends C3.SDKBehaviorTypeBase{constructor(behaviorType){super(behaviorType)}Release(){super.Release()}OnCreate(){}}}
-{const C3=self.C3;const C3X=self.C3X;const IBehaviorInstance=self.IBehaviorInstance;C3.Behaviors.Flash.Instance=class FlashInstance extends C3.SDKBehaviorInstanceBase{constructor(behInst,properties){super(behInst);this._onTime=0;this._offTime=0;this._stage=0;this._stageTimeLeft=0;this._timeLeft=0;this._StartTicking()}Release(){super.Release()}_Flash(on,off,dur){this._onTime=on;this._offTime=off;this._stage=1;this._stageTimeLeft=off;this._timeLeft=dur;this._inst.GetWorldInfo().SetVisible(false);this._runtime.UpdateRender()}_StopFlashing(){this._timeLeft=
-0;this._inst.GetWorldInfo().SetVisible(true);this._runtime.UpdateRender()}_IsFlashing(){return this._timeLeft>0}SaveToJson(){return{"on":this._onTime,"off":this._offTime,"s":this._stage,"stl":this._stageTimeLeft,"tl":this._timeLeft}}LoadFromJson(o){this._onTime=o["on"];this._offTime=o["off"];this._stage=o["s"];this._stageTimeLeft=o["stl"];this._timeLeft=o["tl"]===null?Infinity:o["tl"]}Tick(){if(this._timeLeft<=0)return;const dt=this._runtime.GetDt(this._inst);this._timeLeft-=dt;if(this._timeLeft<=
-0){this._timeLeft=0;this._inst.GetWorldInfo().SetVisible(true);this._runtime.UpdateRender();this.DispatchScriptEvent("flashend");return this.DebugTrigger(C3.Behaviors.Flash.Cnds.OnFlashEnded)}this._stageTimeLeft-=dt;if(this._stageTimeLeft<=0){if(this._stage===0){this._inst.GetWorldInfo().SetVisible(false);this._stage=1;this._stageTimeLeft+=this._offTime}else{this._inst.GetWorldInfo().SetVisible(true);this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}GetDebuggerProperties(){const prefix=
-"behaviors.flash.debugger";return[{title:"$"+this.GetBehaviorType().GetName(),properties:[{name:prefix+".on-time",value:this._onTime,onedit:v=>this._onTime=v},{name:prefix+".off-time",value:this._offTime,onedit:v=>this._offTime=v},{name:prefix+".is-flashing",value:this._timeLeft>0},{name:prefix+".time-left",value:this._timeLeft}]}]}GetScriptInterfaceClass(){return self.IFlashBehaviorInstance}};const map=new WeakMap;self.IFlashBehaviorInstance=class IFlashBehaviorInstance extends IBehaviorInstance{constructor(){super();
-map.set(this,IBehaviorInstance._GetInitInst().GetSdkInstance())}flash(on,off,dur){C3X.RequireFiniteNumber(on);C3X.RequireFiniteNumber(off);C3X.RequireFiniteNumber(dur);map.get(this)._Flash(on,off,dur)}stop(){map.get(this)._StopFlashing()}get isFlashing(){return map.get(this)._IsFlashing()}}}{const C3=self.C3;C3.Behaviors.Flash.Cnds={IsFlashing(){return this._IsFlashing()},OnFlashEnded(){return true}}}{const C3=self.C3;C3.Behaviors.Flash.Acts={Flash(on,off,dur){this._Flash(on,off,dur)},StopFlashing(){this._StopFlashing()}}}
-{const C3=self.C3;C3.Behaviors.Flash.Exps={}};
-
-}
-
-{
 'use strict';{const C3=self.C3;C3.Behaviors.Sin=class SinBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}}}{const C3=self.C3;C3.Behaviors.Sin.Type=class SinType extends C3.SDKBehaviorTypeBase{constructor(behaviorType){super(behaviorType)}Release(){super.Release()}OnCreate(){}}}
 {const C3=self.C3;const C3X=self.C3X;const IBehaviorInstance=self.IBehaviorInstance;const MOVEMENT=0;const WAVE=1;const PERIOD=2;const PERIOD_RANDOM=3;const PERIOD_OFFSET=4;const PERIOD_OFFSET_RANDOM=5;const MAGNITUDE=6;const MAGNITUDE_RANDOM=7;const ENABLE=8;const HORIZONTAL=0;const VERTICAL=1;const SIZE=2;const WIDTH=3;const HEIGHT=4;const ANGLE=5;const OPACITY=6;const VALUE=7;const FORWARDS_BACKWARDS=8;const ZELEVATION=9;const SINE=0;const TRIANGLE=1;const SAWTOOTH=2;const REVERSE_SAWTOOTH=3;const SQUARE=
 4;const _2pi=2*Math.PI;const _pi_2=Math.PI/2;const _3pi_2=3*Math.PI/2;const MOVEMENT_LOOKUP=[0,1,8,3,4,2,5,6,9,7];C3.Behaviors.Sin.Instance=class SinInstance extends C3.SDKBehaviorInstanceBase{constructor(behInst,properties){super(behInst);this._i=0;this._movement=0;this._wave=0;this._period=0;this._mag=0;this._isEnabled=true;this._basePeriod=0;this._basePeriodOffset=0;this._baseMag=0;this._periodRandom=0;this._periodOffsetRandom=0;this._magnitudeRandom=0;this._initialValue=0;this._initialValue2=
@@ -4380,6 +4369,17 @@ const i=VALID_MOVEMENTS.indexOf(m);if(i===-1)throw new Error("invalid movement")
 {const C3=self.C3;C3.Behaviors.Sin.Cnds={IsEnabled(){return this._IsEnabled()},CompareMovement(m){return this._GetMovement()===m},ComparePeriod(cmp,v){return C3.compare(this._GetPeriod(),cmp,v)},CompareMagnitude(cmp,v){return C3.compare(this._GetMagnitude_ConvertAngle(),cmp,v)},CompareWave(w){return this._GetWave()===w}}}
 {const C3=self.C3;C3.Behaviors.Sin.Acts={SetEnabled(e){this._SetEnabled(e!==0)},SetPeriod(x){this._SetPeriod(x)},SetMagnitude(x){this._SetMagnitude_ConvertAngle(x)},SetMovement(m){this._SetMovement(m)},SetWave(w){this._wave=w},SetPhase(x){const _2pi=Math.PI*2;this._SetPhase(x*_2pi%_2pi)},UpdateInitialState(){this.Init()}}}
 {const C3=self.C3;C3.Behaviors.Sin.Exps={CyclePosition(){return this._GetPhase()/(2*Math.PI)},Period(){return this._GetPeriod()},Magnitude(){return this._GetMagnitude_ConvertAngle()},Value(){return this.WaveFunc(this._GetPhase())*this._GetMagnitude_ConvertAngle()}}};
+
+}
+
+{
+'use strict';{const C3=self.C3;C3.Behaviors.Flash=class FlashBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}}}{const C3=self.C3;C3.Behaviors.Flash.Type=class FlashType extends C3.SDKBehaviorTypeBase{constructor(behaviorType){super(behaviorType)}Release(){super.Release()}OnCreate(){}}}
+{const C3=self.C3;const C3X=self.C3X;const IBehaviorInstance=self.IBehaviorInstance;C3.Behaviors.Flash.Instance=class FlashInstance extends C3.SDKBehaviorInstanceBase{constructor(behInst,properties){super(behInst);this._onTime=0;this._offTime=0;this._stage=0;this._stageTimeLeft=0;this._timeLeft=0;this._StartTicking()}Release(){super.Release()}_Flash(on,off,dur){this._onTime=on;this._offTime=off;this._stage=1;this._stageTimeLeft=off;this._timeLeft=dur;this._inst.GetWorldInfo().SetVisible(false);this._runtime.UpdateRender()}_StopFlashing(){this._timeLeft=
+0;this._inst.GetWorldInfo().SetVisible(true);this._runtime.UpdateRender()}_IsFlashing(){return this._timeLeft>0}SaveToJson(){return{"on":this._onTime,"off":this._offTime,"s":this._stage,"stl":this._stageTimeLeft,"tl":this._timeLeft}}LoadFromJson(o){this._onTime=o["on"];this._offTime=o["off"];this._stage=o["s"];this._stageTimeLeft=o["stl"];this._timeLeft=o["tl"]===null?Infinity:o["tl"]}Tick(){if(this._timeLeft<=0)return;const dt=this._runtime.GetDt(this._inst);this._timeLeft-=dt;if(this._timeLeft<=
+0){this._timeLeft=0;this._inst.GetWorldInfo().SetVisible(true);this._runtime.UpdateRender();this.DispatchScriptEvent("flashend");return this.DebugTrigger(C3.Behaviors.Flash.Cnds.OnFlashEnded)}this._stageTimeLeft-=dt;if(this._stageTimeLeft<=0){if(this._stage===0){this._inst.GetWorldInfo().SetVisible(false);this._stage=1;this._stageTimeLeft+=this._offTime}else{this._inst.GetWorldInfo().SetVisible(true);this._stage=0;this._stageTimeLeft+=this._onTime}this._runtime.UpdateRender()}}GetDebuggerProperties(){const prefix=
+"behaviors.flash.debugger";return[{title:"$"+this.GetBehaviorType().GetName(),properties:[{name:prefix+".on-time",value:this._onTime,onedit:v=>this._onTime=v},{name:prefix+".off-time",value:this._offTime,onedit:v=>this._offTime=v},{name:prefix+".is-flashing",value:this._timeLeft>0},{name:prefix+".time-left",value:this._timeLeft}]}]}GetScriptInterfaceClass(){return self.IFlashBehaviorInstance}};const map=new WeakMap;self.IFlashBehaviorInstance=class IFlashBehaviorInstance extends IBehaviorInstance{constructor(){super();
+map.set(this,IBehaviorInstance._GetInitInst().GetSdkInstance())}flash(on,off,dur){C3X.RequireFiniteNumber(on);C3X.RequireFiniteNumber(off);C3X.RequireFiniteNumber(dur);map.get(this)._Flash(on,off,dur)}stop(){map.get(this)._StopFlashing()}get isFlashing(){return map.get(this)._IsFlashing()}}}{const C3=self.C3;C3.Behaviors.Flash.Cnds={IsFlashing(){return this._IsFlashing()},OnFlashEnded(){return true}}}{const C3=self.C3;C3.Behaviors.Flash.Acts={Flash(on,off,dur){this._Flash(on,off,dur)},StopFlashing(){this._StopFlashing()}}}
+{const C3=self.C3;C3.Behaviors.Flash.Exps={}};
 
 }
 
@@ -4523,12 +4523,12 @@ const C3 = self.C3;
 self.C3_GetObjectRefTable = function () {
 	return [
 		C3.Plugins.Sprite,
+		C3.Behaviors.Sin,
 		C3.Plugins.Touch,
 		C3.Plugins.Mouse,
 		C3.Plugins.Audio,
 		C3.Plugins.Browser,
 		C3.Behaviors.Flash,
-		C3.Behaviors.Sin,
 		C3.Behaviors.Platform,
 		C3.Behaviors.MoveTo,
 		C3.Behaviors.Bullet,
@@ -4538,6 +4538,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Behaviors.Flash.Acts.Flash,
+		C3.Plugins.System.Cnds.Compare,
+		C3.Plugins.Audio.Acts.Play,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Plugins.System.Acts.SetLayerVisible,
 		C3.Plugins.Mouse.Cnds.IsOverObject,
@@ -4545,7 +4547,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.System.Acts.GoToLayout,
-		C3.Plugins.System.Cnds.Compare,
+		C3.Plugins.System.Cnds.OnLayoutEnd,
+		C3.Plugins.Audio.Acts.Stop,
 		C3.Plugins.Sprite.Acts.SetAnim,
 		C3.Plugins.Sprite.Acts.SetInstanceVar,
 		C3.Plugins.Browser.Acts.RequestFullScreen,
@@ -4562,10 +4565,9 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.Sprite.Acts.SetPos,
+		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.Sprite.Cnds.OnCollision,
 		C3.Plugins.System.Acts.AddVar,
-		C3.Plugins.System.Cnds.CompareVar,
-		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.System.Cnds.LayerVisible,
 		C3.Plugins.System.Cnds.While,
 		C3.Plugins.Arr.Cnds.CompareSize,
@@ -4577,12 +4579,31 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Cnds.CompareBoolVar,
 		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Arr.Acts.Pop,
-		C3.Plugins.Audio.Acts.Play,
+		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.Text.Acts.SetText,
+		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.System.Acts.RestartLayout
 	];
 };
 self.C3_JsPropNameTable = [
+	{number: 0},
+	{no: 0},
+	{Sine: 0},
+	{morBalon: 0},
+	{morBalon2: 0},
+	{morBalon3: 0},
+	{morBalon4: 0},
+	{morBalon5: 0},
+	{pembeBalon: 0},
+	{pembeBalon2: 0},
+	{pembeBalon3: 0},
+	{pembeBalon4: 0},
+	{pembeBalon5: 0},
+	{sariBalon: 0},
+	{sariBalon2: 0},
+	{sariBalon3: 0},
+	{sariBalon4: 0},
+	{sariBalon5: 0},
 	{kapla: 0},
 	{btnFullScreen: 0},
 	{Touch: 0},
@@ -4601,11 +4622,6 @@ self.C3_JsPropNameTable = [
 	{btnSol: 0},
 	{btnSag: 0},
 	{btnOk: 0},
-	{number: 0},
-	{Sine: 0},
-	{pembeBalon: 0},
-	{pembeBalon2: 0},
-	{pembeBalon3: 0},
 	{gameBackground: 0},
 	{Platform: 0},
 	{MoveTo: 0},
@@ -4616,19 +4632,6 @@ self.C3_JsPropNameTable = [
 	{solid: 0},
 	{solid2: 0},
 	{solid3: 0},
-	{sariBalon: 0},
-	{sariBalon2: 0},
-	{sariBalon3: 0},
-	{sariBalon4: 0},
-	{sariBalon5: 0},
-	{pembeBalon4: 0},
-	{pembeBalon5: 0},
-	{no: 0},
-	{morBalon: 0},
-	{morBalon2: 0},
-	{morBalon3: 0},
-	{morBalon4: 0},
-	{morBalon5: 0},
 	{soruBackground: 0},
 	{sorular: 0},
 	{sorudiz: 0},
@@ -4668,6 +4671,21 @@ self.C3_JsPropNameTable = [
 ];
 
 self.InstanceType = {
+	morBalon: class extends self.ISpriteInstance {},
+	morBalon2: class extends self.ISpriteInstance {},
+	morBalon3: class extends self.ISpriteInstance {},
+	morBalon4: class extends self.ISpriteInstance {},
+	morBalon5: class extends self.ISpriteInstance {},
+	pembeBalon: class extends self.ISpriteInstance {},
+	pembeBalon2: class extends self.ISpriteInstance {},
+	pembeBalon3: class extends self.ISpriteInstance {},
+	pembeBalon4: class extends self.ISpriteInstance {},
+	pembeBalon5: class extends self.ISpriteInstance {},
+	sariBalon: class extends self.ISpriteInstance {},
+	sariBalon2: class extends self.ISpriteInstance {},
+	sariBalon3: class extends self.ISpriteInstance {},
+	sariBalon4: class extends self.ISpriteInstance {},
+	sariBalon5: class extends self.ISpriteInstance {},
 	btnFullScreen: class extends self.ISpriteInstance {},
 	Touch: class extends self.IInstance {},
 	Mouse: class extends self.IInstance {},
@@ -4683,27 +4701,12 @@ self.InstanceType = {
 	btnSol: class extends self.ISpriteInstance {},
 	btnSag: class extends self.ISpriteInstance {},
 	btnOk: class extends self.ISpriteInstance {},
-	pembeBalon: class extends self.ISpriteInstance {},
-	pembeBalon2: class extends self.ISpriteInstance {},
-	pembeBalon3: class extends self.ISpriteInstance {},
 	gameBackground: class extends self.ISpriteInstance {},
 	yay: class extends self.ISpriteInstance {},
 	ok: class extends self.ISpriteInstance {},
 	solid: class extends self.ISpriteInstance {},
 	solid2: class extends self.ISpriteInstance {},
 	solid3: class extends self.ISpriteInstance {},
-	sariBalon: class extends self.ISpriteInstance {},
-	sariBalon2: class extends self.ISpriteInstance {},
-	sariBalon3: class extends self.ISpriteInstance {},
-	sariBalon4: class extends self.ISpriteInstance {},
-	sariBalon5: class extends self.ISpriteInstance {},
-	pembeBalon4: class extends self.ISpriteInstance {},
-	pembeBalon5: class extends self.ISpriteInstance {},
-	morBalon: class extends self.ISpriteInstance {},
-	morBalon2: class extends self.ISpriteInstance {},
-	morBalon3: class extends self.ISpriteInstance {},
-	morBalon4: class extends self.ISpriteInstance {},
-	morBalon5: class extends self.ISpriteInstance {},
 	soruBackground: class extends self.ISpriteInstance {},
 	sorular: class extends self.ISpriteInstance {},
 	sorudiz: class extends self.IArrayInstance {},
@@ -4835,18 +4838,18 @@ function or(l, r)
 self.C3_ExpressionFuncs = [
 		() => 0.2,
 		() => 3,
-		() => "bilgi",
-		() => "background",
-		() => 1,
-		() => 0,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => n0.ExpInstVar();
 		},
+		() => 1,
+		() => 0,
+		() => "muzik",
+		() => "bilgi",
+		() => "background",
+		() => "ses",
 		() => "close",
 		() => "open",
-		() => "ses",
-		() => "muzik",
 		() => "soru",
 		() => 0.01,
 		p => {
@@ -4857,19 +4860,20 @@ self.C3_ExpressionFuncs = [
 		() => "dene",
 		p => {
 			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 60);
+			return () => (n0.ExpObject() + 100);
 		},
 		p => {
 			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 60);
+			return () => (n0.ExpObject() - 100);
 		},
+		() => 1.5,
 		() => "geril",
 		() => "birak",
 		() => 2,
 		() => 957,
 		() => 782,
-		() => 4,
-		() => 5,
+		() => "Carpisma",
+		() => 0.5,
 		() => "SORU",
 		() => 15,
 		p => {
@@ -4885,7 +4889,8 @@ self.C3_ExpressionFuncs = [
 			const v0 = p._GetNode(0).GetVar();
 			return () => v0.GetValue();
 		},
-		() => 7
+		() => 7,
+		() => 5
 ];
 
 
