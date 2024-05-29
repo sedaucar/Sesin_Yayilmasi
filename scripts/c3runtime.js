@@ -4535,14 +4535,14 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.solid,
 		C3.Plugins.Arr,
 		C3.Plugins.Text,
-		C3.Plugins.System.Cnds.IsPreview,
-		C3.Plugins.System.Cnds.Compare,
-		C3.Plugins.System.Cnds.TriggerOnce,
-		C3.Plugins.Audio.Acts.Play,
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.System.Acts.ResetGlobals,
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Behaviors.Flash.Acts.Flash,
+		C3.Plugins.System.Cnds.Compare,
+		C3.Plugins.System.Cnds.TriggerOnce,
+		C3.Plugins.Audio.Acts.Play,
+		C3.Plugins.System.Cnds.IsPreview,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Plugins.System.Acts.SetLayerVisible,
 		C3.Plugins.Mouse.Cnds.IsOverObject,
@@ -4838,6 +4838,8 @@ function or(l, r)
 }
 
 self.C3_ExpressionFuncs = [
+		() => 0.2,
+		() => 3,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => n0.ExpInstVar();
@@ -4845,8 +4847,6 @@ self.C3_ExpressionFuncs = [
 		() => 1,
 		() => 0,
 		() => "muzik",
-		() => 0.2,
-		() => 3,
 		() => "bilgi",
 		() => "background",
 		() => "ses",
