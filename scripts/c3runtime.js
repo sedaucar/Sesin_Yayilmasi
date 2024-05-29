@@ -4561,6 +4561,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Arr.Exps.Back,
 		C3.Behaviors.Bullet.Acts.SetEnabled,
 		C3.Plugins.Sprite.Acts.StopAnim,
+		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Behaviors.MoveTo.Acts.MoveToPosition,
 		C3.Plugins.Sprite.Exps.X,
 		C3.Plugins.Sprite.Exps.Y,
@@ -4568,7 +4569,6 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.Sprite.Acts.Destroy,
-		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.Sprite.Cnds.OnCollision,
 		C3.Plugins.System.Acts.AddVar,
@@ -4857,6 +4857,8 @@ self.C3_ExpressionFuncs = [
 			const n0 = p._GetNode(0);
 			return () => n0.ExpObject();
 		},
+		() => 957,
+		() => 782,
 		() => "tebrik",
 		() => "dene",
 		p => {
@@ -4871,8 +4873,6 @@ self.C3_ExpressionFuncs = [
 		() => "geril",
 		() => "birak",
 		() => 2,
-		() => 957,
-		() => 782,
 		() => "Carpisma",
 		() => 0.5,
 		() => "SORU",
