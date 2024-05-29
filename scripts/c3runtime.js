@@ -4582,8 +4582,8 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Arr.Acts.Push,
 		C3.Plugins.Sprite.Cnds.IsVisible,
 		C3.Plugins.Arr.Acts.Pop,
-		C3.Plugins.System.Cnds.CompareVar,
-		C3.Plugins.Text.Acts.SetText
+		C3.Plugins.Text.Acts.SetText,
+		C3.Plugins.System.Cnds.CompareVar
 	];
 };
 self.C3_JsPropNameTable = [
@@ -4892,7 +4892,11 @@ self.C3_ExpressionFuncs = [
 			return () => v0.GetValue();
 		},
 		() => 7,
-		() => 5
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			const v1 = p._GetNode(1).GetVar();
+			return () => (v0.GetValue() + v1.GetValue());
+		}
 ];
 
 
